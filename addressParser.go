@@ -5,12 +5,12 @@ import (
     "fmt"
 )
 
-func ParseStringAddress(address string) *addressData {
+func ParseStringAddress(address string) (*addressData, error) {
     dist_re := getDistrictParser();
     street_re := getStreetParser();
     subStreet_re := getSubStreetParser();
 
-    tmp := address
+    tmp := strings.ToLower(address)
 
     districtName := ""
     streetName := ""
@@ -30,6 +30,10 @@ func ParseStringAddress(address string) *addressData {
         subStreetName = sok_result[0]
     }
 
+    if districtName == "" && streetName == "" && subStreetName == "" {
+        return nil, fmt.Errorf("the given address could not be parsed")
+    }
+
     full_address := fmt.Sprintf("%s %s %s", districtName, streetName, subStreetName)
 
     return &addressData {
@@ -37,5 +41,5 @@ func ParseStringAddress(address string) *addressData {
         District: districtName,
         SubStreet: subStreetName,
         FullAddress: full_address,
-    }
+    }, nil
 }
