@@ -7,19 +7,19 @@ type addressData struct {
 	FullAddress string `json:"full_address"`
 }
 
-func (a *addressData) getStreet() string {
+func (a *addressData) GetStreet() string {
 	return a.Street
 }
 
-func (a *addressData) getDistrict() string {
+func (a *addressData) GetDistrict() string {
 	return a.District
 }
 
-func (a *addressData) getSubStreet() string {
+func (a *addressData) GetSubStreet() string {
 	return a.SubStreet
 }
 
-func (a *addressData) getFullAddress() string {
+func (a *addressData) GetFullAddress() string {
 	return a.FullAddress
 }
 
